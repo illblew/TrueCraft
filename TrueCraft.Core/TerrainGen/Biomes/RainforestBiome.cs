@@ -46,7 +46,7 @@ namespace TrueCraft.Core.TerrainGen.Biomes
         {
             get
             {
-                return new[] { PlantSpecies.Fern, PlantSpecies.TallGrass };
+                return new[] { PlantSpecies.Fern, PlantSpecies.TallGrass, PlantSpecies.BrownMushroom, PlantSpecies.RedMushroom };
             }
         }
     }

@@ -37,6 +37,8 @@ namespace TrueCraft.Core.TerrainGen.Decorators
                             {
                                 var bushNoise = chanceNoise.Value2D(blockX * 0.7, blockZ * 0.7);
                                 var grassNoise = chanceNoise.Value2D(blockX * 0.3, blockZ * 0.3);
+                                var brownMushroomNoise = chanceNoise.Value2D (blockX * 0.3, blockZ * 0.3);
+                                var redMushroomNoise = chanceNoise.Value2D (blockX * 0.3, blockZ * 0.3);
                                 if (biome.Plants.Contains(PlantSpecies.Deadbush) && bushNoise > 1 && chunk.GetBlockID(blockLocation) == SandBlock.BlockID)
                                 {
                                     GenerateDeadBush(chunk, plantPosition);
@@ -48,6 +50,16 @@ namespace TrueCraft.Core.TerrainGen.Decorators
                                     byte meta = (grassNoise > 0.3 && grassNoise < 0.45 && biome.Plants.Contains(PlantSpecies.Fern)) ? (byte)0x2 : (byte)0x1;
                                     GenerateTallGrass(chunk, plantPosition, meta);
                                     continue;
+                                }
+                                //I think these have conditions rather than this type of placement in the biome, not sure.
+                                if (biome.Plants.Contains(PlantSpecies.BrownMushroom) && brownMushroomNoise > 0.03 && brownMushroomNoise < 0.04)
+                                {
+                                    GenerateBrownMushroom(chunk, plantPosition);
+                                }
+
+                                if (biome.Plants.Contains(PlantSpecies.RedMushroom) && redMushroomNoise > 0.02 && redMushroomNoise < 0.03)
+                                {
+                                    GenerateRedMushroom(chunk, plantPosition);
                                 }
                             }
                             else
@@ -87,6 +99,16 @@ namespace TrueCraft.Core.TerrainGen.Decorators
         void GenerateDeadBush(IChunk chunk, Coordinates3D location)
         {
             chunk.SetBlockID(location, DeadBushBlock.BlockID);
+        }
+
+        void GenerateBrownMushroom(IChunk chunk, Coordinates3D location) 
+        {
+            chunk.SetBlockID (location, BrownMushroomBlock.BlockID);
+        }
+
+        void GenerateRedMushroom(IChunk chunk, Coordinates3D location)
+        {
+            chunk.SetBlockID (location, RedMushroomBlock.BlockID);
         }
     }
 }

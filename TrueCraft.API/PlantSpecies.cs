@@ -44,5 +44,15 @@ namespace TrueCraft.API
         /// Sugarcane.
         /// </summary>
         SugarCane,
+
+        /// <summary>
+        /// Red Mushroom.
+        /// </summary>
+        RedMushroom,
+
+        /// <summary>
+        /// Brown Mushroom.
+        /// </summary>
+        BrownMushroom,
     }
 }

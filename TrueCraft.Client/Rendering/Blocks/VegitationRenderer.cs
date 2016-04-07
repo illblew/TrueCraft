@@ -15,10 +15,14 @@ namespace TrueCraft.Client.Rendering.Blocks
             BlockRenderer.RegisterRenderer(TallGrassBlock.BlockID, new VegitationRenderer());
             BlockRenderer.RegisterRenderer(DeadBushBlock.BlockID, new VegitationRenderer());
             BlockRenderer.RegisterRenderer(SaplingBlock.BlockID, new VegitationRenderer());
+            BlockRenderer.RegisterRenderer(BrownMushroomBlock.BlockID, new VegitationRenderer());
+            BlockRenderer.RegisterRenderer(RedMushroomBlock.BlockID, new VegitationRenderer());
         }
             
         protected Vector2 DandelionTextureMap { get { return new Vector2(13, 0); } }
         protected Vector2 RoseTextureMap { get { return new Vector2(12, 0); } }
+        protected Vector2 BrownMushroomTextureMap  { get { return new Vector2(13, 1); } }
+        protected Vector2 RedMushroomTextureMap  { get { return new Vector2(12, 1); } }
         protected Vector2 TallGrassTextureMap { get { return new Vector2(7, 2); } }
         protected Vector2 DeadBushTextureMap { get { return new Vector2(7, 3); } }
         protected Vector2 FernTextureMap { get { return new Vector2(8, 3); } }
@@ -26,6 +30,7 @@ namespace TrueCraft.Client.Rendering.Blocks
         protected Vector2 SpruceSaplingTextureMap { get { return new Vector2(15, 3); } }
         protected Vector2 BirchSaplingTextureMap { get { return new Vector2(15, 4); } }
         protected Vector2[] DandelionTexture, RoseTexture;
+        protected Vector2[] BrownMushroomTexture, RedMushroomTexture;
         protected Vector2[] TallGrassTexture, DeadBushTexture, FernTexture;
         protected Vector2[] OakSaplingTexture, SpruceSaplingTexture, BirchSaplingTexture;
 
@@ -45,6 +50,20 @@ namespace TrueCraft.Client.Rendering.Blocks
                     RoseTextureMap,
                     RoseTextureMap + Vector2.UnitX,
                 };
+            RedMushroomTexture = new[]
+                {
+                    RedMushroomTextureMap + Vector2.UnitX + Vector2.UnitY,
+                    RedMushroomTextureMap + Vector2.UnitY,
+                    RedMushroomTextureMap,
+                    RedMushroomTextureMap + Vector2.UnitX,
+                };
+            BrownMushroomTexture = new[]
+            {
+                BrownMushroomTextureMap + Vector2.UnitX + Vector2.UnitY,
+                BrownMushroomTextureMap + Vector2.UnitY,
+                BrownMushroomTextureMap,
+                BrownMushroomTextureMap + Vector2.UnitX,
+            };
             TallGrassTexture = new[]
                 {
                     TallGrassTextureMap + Vector2.UnitX + Vector2.UnitY,
@@ -91,6 +110,8 @@ namespace TrueCraft.Client.Rendering.Blocks
             {
                 DandelionTexture[i] *= new Vector2(16f / 256f);
                 RoseTexture[i] *= new Vector2(16f / 256f);
+                RedMushroomTexture[i] *= new Vector2(16f / 256f);
+                BrownMushroomTexture[i] *= new Vector2(16f / 256f);
                 TallGrassTexture[i] *= new Vector2(16f / 256f);
                 DeadBushTexture[i] *= new Vector2(16f / 256f);
                 FernTexture[i] *= new Vector2(16f / 256f);
@@ -107,6 +128,10 @@ namespace TrueCraft.Client.Rendering.Blocks
                 return RenderQuads(descriptor, offset, RoseTexture, indiciesOffset, out indicies, Color.White);
             else if (descriptor.ID == DandelionBlock.BlockID)
                 return RenderQuads(descriptor, offset, DandelionTexture, indiciesOffset, out indicies, Color.White);
+            else if (descriptor.ID == RedMushroomBlock.BlockID)
+                return RenderQuads(descriptor, offset, RedMushroomTexture, indiciesOffset, out indicies, Color.White);
+            else if (descriptor.ID == BrownMushroomBlock.BlockID)
+                return RenderQuads(descriptor, offset, BrownMushroomTexture, indiciesOffset, out indicies, Color.White);
             else if (descriptor.ID == SaplingBlock.BlockID)
             {
                 switch ((SaplingBlock.SaplingType)descriptor.Metadata)

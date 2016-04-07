@@ -40,13 +40,13 @@ namespace TrueCraft.Core.TerrainGen.Biomes
         }
 
         /// <summary>
-        /// The flowers generated in the biome.
+        /// The plants generated in the biome.
         /// </summary>
         public virtual PlantSpecies[] Plants
         {
             get
             {
-                return new[] { PlantSpecies.Dandelion, PlantSpecies.Rose, PlantSpecies.TallGrass, PlantSpecies.Fern };
+                return new[] { PlantSpecies.Dandelion, PlantSpecies.Rose, PlantSpecies.TallGrass, PlantSpecies.Fern, PlantSpecies.RedMushroom, PlantSpecies.BrownMushroom };
             }
         }
 
